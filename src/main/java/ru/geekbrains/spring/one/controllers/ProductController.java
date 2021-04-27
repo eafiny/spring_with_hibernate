@@ -48,4 +48,11 @@ public class ProductController {
         productService.deleteById(id);
         return "redirect:/";
     }
+
+    @GetMapping("/products/category/{id}")
+    public String findProductsByCategory(@PathVariable(name = "id") Long id, Model model){
+        List<Product>products = productService.findProductsByCategory(id);
+        model.addAttribute("products", products);
+        return "index";
+    }
 }
